@@ -104,7 +104,7 @@ func (transactionRepository *TransactionRepositoryDb) CreateCreditCard(creditCar
 
 func (transactionRepository *TransactionRepositoryDb) GetCreditCard(creditCard domain.CreditCard) (domain.CreditCard, error) {
 	var newCreditCard domain.CreditCard
-	stmt, err := transactionRepository.db.Prepare("SELECT id, balance, balance_limit, FROM credit_cards WHERE number=$1")
+	stmt, err := transactionRepository.db.Prepare("SELECT id, balance, balance_limit FROM credit_cards WHERE number=$1")
 	if err != nil {
 		return newCreditCard, err
 	}

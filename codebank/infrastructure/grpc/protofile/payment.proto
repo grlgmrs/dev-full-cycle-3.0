@@ -1,0 +1,27 @@
+syntax = "proto3";
+package payment;
+// especificamente para quando formos trabalhar com GO
+option go_package = "grpc/pb";
+
+import "google/protobuf/empty.proto";
+
+service PaymentService {
+  rpc Payment(PaymentRequest) returns (google.protobuf.Empty) {}
+}
+
+// o segundo parâmetro serve para dizer a ordem que iremos receber os dados
+message PaymentRequest {
+  // também podemos definir o CreditCard fora
+  message CreditCard {
+    string name = 1; 
+    string number = 2;
+    int32 expirationMonth = 3;
+    int32 expirationYear = 4;
+    int32 cvv = 5;
+  }
+
+  CreditCard creditCard = 1;
+  double amount = 2;
+  string store = 3;
+  string description = 4;
+}
