@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  api:
+    build: .
+    # o dockerize segura o inicio do nestjs, deixando ele iniciar somente depois que o banco de dados
+    # estiver pronto
+    entrypoint: dockerize -wait tcp://db:5432 -timeout 40s ./.docker/entrypoint.sh
+    container_name: imersao-fullcycle3-store-frontend-api
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/home/node/app
+    depends_on:
+      - db
+
+  db:
+    build: ./.docker/postgres
+    container_name: imersao-fullcycle3-store-frontend-api-db
+    restart: always
+    tty: true
+    ports:
+      - 5432:5432
+    volumes:
+      - ./.docker/dbdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=store
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: imersao-fullcycle-3-store-api-pgadmin
+    tty: true
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@user.com
+      - PGADMIN_DEFAULT_PASSWORD=123456
+    ports:
+      - 9000:80

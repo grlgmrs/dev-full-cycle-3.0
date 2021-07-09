@@ -1,0 +1,76 @@
+GET http://localhost:3000/products
+
+###
+GET http://localhost:3000/products/tv-32
+
+###
+POST http://localhost:3000/products
+Content-Type: application/json
+
+{
+    "name": "tv 32",
+    "description": "Mussum Ipsum, cacilds vidis litro abertis. Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. Aenean sit amet nisi. In elementis mé pra quem é amistosis quis leo. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis. Cevadis im ampola pa arma uma pindureta.",
+    "image_url": "https://images.unsplash.com/photo-1570831739435-6601aa3fa4fb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218fHx8fHx8fHwxNjIzMzQ0NjY2&ixlib=rb-1.2.1&q=80&w=1080&utm_source=unsplash_source&utm_medium=referral&utm_campaign=api-credit",
+    "price": 1500.99
+}
+
+###
+PATCH http://localhost:3000/products/ea6a74e2-44a4-43e9-8954-0e5a20b93cca
+Content-Type: application/json
+
+{
+    "name": "tv 49 alterada",
+    "price": 2449.99
+}
+
+###
+DELETE http://localhost:3000/products/e271a492-61a9-4925-b926-eca7be9884d4
+
+## ORDERS ####
+
+###
+GET http://localhost:3000/orders
+
+###
+GET http://localhost:3000/orders/64be9c0d-0079-442b-8bd7-2de24c1cf322
+
+
+###
+POST http://localhost:3000/orders
+Content-Type: application/json
+
+{
+    "credit_card": {
+      "number": "1111111111111103",
+      "name": "Luiz carlos",
+      "expiration_month": 7,
+      "expiration_year": 2021,
+      "cvv": "123"
+   },
+   "items":  [
+      {
+          "quantity": 2, 
+          "product_id": "baa859c7-f473-4438-96e3-31cda59749b2"
+      },
+      {
+          "quantity": 3, 
+          "product_id": "ea6a74e2-44a4-43e9-8954-0e5a20b93cca"
+      }
+   ]
+}
+
+# {
+#    "credit_card": {
+#       "number": "1111111111111103",
+#       "name": "Luiz carlos",
+#       "expiration_month": 6,
+#       "expiration_year": 2021,
+#       "cvv": "123"
+#    },
+#    "items":  [
+#       {
+#           "quantity": 2, 
+#           "product_id": "8ea4791a-9534-4f45-b172-f22a7e2b90c3"
+#       }
+#    ]
+# }
