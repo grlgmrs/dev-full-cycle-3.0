@@ -1,4 +1,4 @@
-# Anotações sobre a aula 1
+# Anotações sobre a aula 2
 
 ## Apache Kafka
 
